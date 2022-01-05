@@ -70,6 +70,9 @@ pikaur -S visual-studio-code-bin --noconfirm
 #install dotnet-sdk
 #sudo pacman -S dotnet-sdk
 
+#add user to virtualbox group
+sudo usermod -G vboxsf -a $USER
+
 #install configs
 echo "Coping config files to $HOME/.config/"
 cp -R /vagrant/.config/* $HOME/.config/
