@@ -1,3 +1,8 @@
+#update keys
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+
+#update packaglist
 sudo pacman -Sy --noconfirm
 
 #install vbguest
@@ -6,9 +11,7 @@ sudo pacman -S virtualbox-guest-utils --noconfirm
 
 #install packages
 sudo pacman -S \
-    xorg-server \
     xorg-xinit \
-    xorg-apps \
     ttf-dejavu \
     lxdm \
     i3 \
