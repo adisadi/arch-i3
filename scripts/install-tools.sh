@@ -2,8 +2,8 @@
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
 
-#update packaglist
-sudo pacman -Sy --noconfirm
+#full upgrade
+sudo pacman -Syu --noconfirm
 
 #install vbguest
 sudo pacman -R virtualbox-guest-utils-nox --noconfirm
@@ -24,9 +24,6 @@ sudo pacman -S \
     git \
     nano \
     --noconfirm
-
-#full upgrade
-sudo pacman -Syu --noconfirm
 
 #display manager & autologin
 sudo sed -i 's|# session=/usr/bin/startlxde|session=/usr/bin/i3|g' /etc/lxdm/lxdm.conf
@@ -79,6 +76,9 @@ sudo usermod -G vboxsf -a $USER
 #install configs
 echo "Coping config files to $HOME/.config/"
 cp -R /vagrant/.config/* $HOME/.config/
+
+#delete packages & cache
+sudo pacman -Sc --noconfirm
 
 sleep 1
 echo "Finished.."
