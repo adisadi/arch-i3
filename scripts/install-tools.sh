@@ -43,6 +43,9 @@ sudo locale-gen
 #Set default Terminal
 echo 'TERMINAL=kitty' | sudo tee -a /etc/environment
 
+#Set default Editor
+echo 'EDITOR=nano' | sudo tee -a /etc/environment
+
 #start display manager
 sudo systemctl enable lxdm
 sudo systemctl start lxdm
