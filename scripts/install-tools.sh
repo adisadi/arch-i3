@@ -13,6 +13,8 @@ sudo pacman -S virtualbox-guest-utils --noconfirm
 sudo pacman -S \
     xorg-xinit \
     ttf-dejavu \
+    ttf-font-awesome \
+    picom \
     lxdm \
     i3 \
     dmenu \
