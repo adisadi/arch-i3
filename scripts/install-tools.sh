@@ -30,6 +30,10 @@ sudo pacman -S \
 #display manager & autologin
 sudo sed -i 's|# session=/usr/bin/startlxde|session=/usr/bin/i3|g' /etc/lxdm/lxdm.conf
 sudo sed -i 's|# autologin=dgod|autologin=vagrant|g' /etc/lxdm/lxdm.conf
+sudo sed -i 's|# bg=/usr/share/backgrounds/default.png|bg=/usr/share/backgrounds/default.jpg|g' /etc/lxdm/lxdm.conf
+
+sudo mkdir /usr/share/backgrounds
+sudo cp /vagrant/.config/wallpapers/default.jpg /usr/share/backgrounds
 
 #Locale
 sudo localectl --no-convert set-keymap de_CH-latin1
@@ -84,6 +88,8 @@ cp -R /vagrant/.config/* $HOME/.config/
 
 #delete packages & cache
 sudo pacman -Sc --noconfirm
+
+VBoxClient-all
 
 sleep 1
 echo "Finished.."

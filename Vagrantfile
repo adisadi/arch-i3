@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
 
      vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
      vb.customize ['modifyvm', :id, '--vram', '128']
+     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
    end
 
    if Vagrant.has_plugin?("vagrant-vbguest")
