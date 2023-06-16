@@ -9,6 +9,10 @@ sudo pacman -Syu --noconfirm
 sudo pacman -R virtualbox-guest-utils-nox --noconfirm
 sudo pacman -S virtualbox-guest-utils --noconfirm
 
+#enable vbguest
+sudo systemctl enable vboxservice.service
+sudo systemctl start vboxservice.service
+
 #install packages
 sudo pacman -S \
     xorg-xinit \
@@ -24,16 +28,21 @@ sudo pacman -S \
     neofetch \
     kitty \
     git \
+    fish \
+    chezmoi \
     nano \
     --noconfirm
 
+#set default shell
+sudo chsh -s /usr/bin/fish
+
 #display manager & autologin
 sudo sed -i 's|# session=/usr/bin/startlxde|session=/usr/bin/i3|g' /etc/lxdm/lxdm.conf
-sudo sed -i 's|# autologin=dgod|autologin=vagrant|g' /etc/lxdm/lxdm.conf
+sudo sed -i "s|# autologin=dgod|autologin=$USER|g" /etc/lxdm/lxdm.conf
 sudo sed -i 's|# bg=/usr/share/backgrounds/default.png|bg=/usr/share/backgrounds/default.jpg|g' /etc/lxdm/lxdm.conf
 
 sudo mkdir /usr/share/backgrounds
-sudo cp /vagrant/.config/wallpapers/default.jpg /usr/share/backgrounds
+sudo cp ../.config/wallpapers/default.jpg /usr/share/backgrounds
 
 #Locale
 sudo localectl --no-convert set-keymap de_CH-latin1
@@ -84,12 +93,10 @@ sudo usermod -G vboxsf -a $USER
 
 #install configs
 echo "Coping config files to $HOME/.config/"
-cp -R /vagrant/.config/* $HOME/.config/
+cp -R ../.config/* $HOME/.config/
 
 #delete packages & cache
 sudo pacman -Sc --noconfirm
-
-VBoxClient-all
 
 sleep 1
 echo "Finished.."
