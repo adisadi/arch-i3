@@ -13,7 +13,11 @@ set $mod Mod4
 
 #gaps
 gaps inner 10
-gaps outer 5
+#gaps outer 5
+gaps top -10
+gaps left 5
+gaps right 5
+gaps bottom 5
 
 #background
 for_window [class=".*"] border pixel 2
