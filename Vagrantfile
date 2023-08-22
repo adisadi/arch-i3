@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
      # CPU
      vb.cpus = 2
 
-     vb.name = ENV['ARCHI3_VM_NAME'] + "-" + ENV['ARCHI3_VM_VERSION']
+     #vb.name = ENV['ARCHI3_VM_NAME'] + "-" + ENV['ARCHI3_VM_VERSION']
 
      vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
      vb.customize ['modifyvm', :id, '--vram', '128']

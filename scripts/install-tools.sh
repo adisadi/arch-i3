@@ -1,6 +1,6 @@
 #update keys
-sudo pacman-key --init
-sudo pacman-key --populate archlinux
+#sudo pacman-key --init
+#sudo pacman-key --populate archlinux
 
 #full upgrade
 sudo pacman -Syu --noconfirm
@@ -16,13 +16,14 @@ sudo systemctl start vboxservice.service
 #install packages
 sudo pacman -S \
     xorg-xinit \
-    ttf-dejavu \
-    ttf-font-awesome \
+    ttf-sourcecodepro-nerd \
     picom \
     lxdm \
-    i3 \
+    i3-wm \
+    dex \
+    polybar \
     dmenu \
-    firefox \
+    chromium \
     ranger \
     feh \
     neofetch \
@@ -33,16 +34,13 @@ sudo pacman -S \
     nano \
     --noconfirm
 
-#set default shell
-sudo chsh -s /usr/bin/fish
-
 #display manager & autologin
 sudo sed -i 's|# session=/usr/bin/startlxde|session=/usr/bin/i3|g' /etc/lxdm/lxdm.conf
 sudo sed -i "s|# autologin=dgod|autologin=$USER|g" /etc/lxdm/lxdm.conf
 sudo sed -i 's|# bg=/usr/share/backgrounds/default.png|bg=/usr/share/backgrounds/default.jpg|g' /etc/lxdm/lxdm.conf
 
 sudo mkdir /usr/share/backgrounds
-sudo cp ../.config/wallpapers/default.jpg /usr/share/backgrounds
+sudo cp /vagrant/.config/wallpapers/default.jpg /usr/share/backgrounds
 
 #Locale
 sudo localectl --no-convert set-keymap de_CH-latin1
@@ -61,6 +59,9 @@ echo 'TERMINAL=kitty' | sudo tee -a /etc/environment
 #Set default Editor
 echo 'EDITOR=nano' | sudo tee -a /etc/environment
 
+#set default shell
+sudo chsh -s /usr/bin/fish vagrant
+
 #start display manager
 sudo systemctl enable lxdm
 sudo systemctl start lxdm
@@ -74,7 +75,7 @@ cd ..
 rm -rf pikaur
 
 #install vscode aur
-pikaur -S visual-studio-code-bin --noconfirm
+#pikaur -S visual-studio-code-bin --noconfirm
 
 #install docker
 #sudo pacman -S \
@@ -93,7 +94,10 @@ sudo usermod -G vboxsf -a $USER
 
 #install configs
 echo "Coping config files to $HOME/.config/"
-cp -R ../.config/* $HOME/.config/
+cp -R /vagrant/.config/* $HOME/.config/
+
+#make polybar launch script executable
+chmod +x $HOME/.config/polybar/launch.sh
 
 #delete packages & cache
 sudo pacman -Sc --noconfirm
