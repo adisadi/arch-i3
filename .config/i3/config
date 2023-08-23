@@ -13,16 +13,12 @@ set $mod Mod4
 
 #gaps
 gaps inner 10
-#gaps outer 5
-gaps top -10
-gaps left 5
-gaps right 5
-gaps bottom 5
+gaps outer 5
 
 #background
 for_window [class=".*"] border pixel 2
 hide_edge_borders both
-exec --no-startup-id feh --no-fehbg --bg-scale $HOME/.config/wallpapers/default.jpg
+exec --no-startup-id feh --no-fehbg --bg-scale $HOME/.config/wallpapers/tn.jpg
 
 # shutdown / restart / suspend...
 set $mode_system (e) logout, (r) reboot, (CTRL+s) shutdown
@@ -217,9 +213,30 @@ set $inactive_border #7aa2f7
 set $inactive_bg #24283b
 set $inactive_text #9aa5ce
 
-set $urgent_border #f7768e
+set $urgent_border #ff9e64
 set $urgent_bg #ff9e64
 set $urgent_text #1a1b26
+
+bar {
+        status_command i3status --config $HOME/.config/i3/i3status.conf
+        # Disable all tray icons
+        tray_output none
+        position top
+        workspace_buttons       yes
+        strip_workspace_numbers yes
+
+        colors {
+        	background $active_bg
+        	statusline $active_text
+        	separator $inactive_border
+		#<colorclass> <border> <background> <text>
+        	focused_workspace  $active_border $active_bg $active_text
+        	active_workspace   $active_border $active_bg $active_text
+        	inactive_workspace #00000000 $inactive_bg $inactive_text
+        	urgent_workspace   $urgent_border $urgent_bg $urgent_text 
+        	#binding_mode       #2f343a #900000 #ffffff
+    	}
+}
 
 # class                 border  bground text indicator child_border
 client.focused           $active_border $active_bg $active_text $active_border $active_border
@@ -238,4 +255,3 @@ exec --no-startup-id i3-msg "workspace $ws4; exec kitty -e ranger"
 exec --no-startup-id i3-msg "workspace $ws1;"
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
