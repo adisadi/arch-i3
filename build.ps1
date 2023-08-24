@@ -1,6 +1,6 @@
 $env:VAGRANT_EXPERIMENTAL="disks"
 $env:ARCHI3_VM_NAME="arch-i3"
-$env:ARCHI3_VM_VERSION="1.1"
+$env:ARCHI3_VM_VERSION="1.4"
 
 vagrant up
 vagrant package
