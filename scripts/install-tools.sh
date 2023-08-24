@@ -19,9 +19,8 @@ sudo pacman -S \
     ttf-sourcecodepro-nerd \
     picom \
     lxdm \
-    i3-wm \
+    i3 \
     dex \
-    polybar \
     dmenu \
     chromium \
     ranger \
@@ -30,7 +29,8 @@ sudo pacman -S \
     kitty \
     git \
     fish \
-    chezmoi \
+    bottom \
+    lazygit \
     nano \
     --noconfirm
 
@@ -96,8 +96,6 @@ sudo usermod -G vboxsf -a $USER
 echo "Coping config files to $HOME/.config/"
 cp -R /vagrant/.config/* $HOME/.config/
 
-#make polybar launch script executable
-chmod +x $HOME/.config/polybar/launch.sh
 
 #delete packages & cache
 sudo pacman -Sc --noconfirm
