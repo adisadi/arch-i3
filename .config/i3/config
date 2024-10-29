@@ -16,7 +16,7 @@ gaps inner 10
 gaps outer 5
 
 #background
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 hide_edge_borders both
 exec --no-startup-id feh --no-fehbg --bg-scale $HOME/.config/wallpapers/default.jpg
 
@@ -206,7 +206,7 @@ bindsym $mod+r mode "resize"
 
 #theme colors
 set $active_border   #7dcfff
-set $active_bg   #1a1b26
+set $active_bg   #1a1b26c0
 set $active_text   #c0caf5
 
 set $inactive_border #7aa2f7
@@ -219,6 +219,8 @@ set $urgent_text #1a1b26
 
 bar {
         status_command i3status --config $HOME/.config/i3/i3status.conf
+	i3bar_command i3bar -t
+	mode dock
         # Disable all tray icons
         tray_output none
         position top
@@ -227,21 +229,21 @@ bar {
 
         colors {
         	background $active_bg
-        	statusline $active_text
-        	separator $inactive_border
+        	statusline #00000000
+        	separator  #00000000
 		#<colorclass> <border> <background> <text>
-        	focused_workspace  $active_border $active_bg $active_text
-        	active_workspace   $active_border $active_bg $active_text
-        	inactive_workspace #00000000 $inactive_bg $inactive_text
-        	urgent_workspace   $urgent_border $urgent_bg $urgent_text 
+        	focused_workspace  $active_bg $active_bg $active_text
+        	active_workspace   $active_bg $active_bg $active_text
+        	inactive_workspace $active_bg $active_bg $inactive_text
+        	urgent_workspace   $active_bg $active_bg $active_text 
         	#binding_mode       #2f343a #900000 #ffffff
     	}
 }
 
 # class                 border  bground text indicator child_border
-client.focused           $active_border $active_bg $active_text $active_border $active_border
-client.focused_inactive  $inactive_border $inactive_bg $inactive_text $inactive_border $inactive_border
-client.unfocused         $inactive_border $inactive_bg $inactive_text $inactive_border $inactive_border
+#client.focused           $active_border $active_bg $active_text $active_border $active_border
+#client.focused_inactive  $inactive_border $inactive_bg $inactive_text $inactive_border $inactive_border
+#client.unfocused         $inactive_border $inactive_bg $inactive_text $inactive_border $inactive_border
 
 client.background       #FFFFFF
 
