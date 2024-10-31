@@ -32,6 +32,7 @@ sudo pacman -S \
     bottom \
     lazygit \
     nano \
+    ncdu \
     --noconfirm
 
 #display manager & autologin
@@ -66,7 +67,14 @@ sudo chsh -s /usr/bin/fish vagrant
 sudo systemctl enable lxdm
 sudo systemctl start lxdm
 
- #install aur helper pikaur
+#add user to virtualbox group
+sudo usermod -G vboxsf -a $USER
+
+#symlink configs
+echo "symlink config files to $HOME/.config/"
+ln -s /vagrant/.config $HOME/
+
+#install aur helper pikaur
 sudo pacman -S --needed base-devel git --noconfirm
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
@@ -88,13 +96,6 @@ rm -rf pikaur
 
 #install dotnet-sdk
 #sudo pacman -S dotnet-sdk
-
-#add user to virtualbox group
-sudo usermod -G vboxsf -a $USER
-
-#install configs
-echo "Coping config files to $HOME/.config/"
-cp -R /vagrant/.config/* $HOME/.config/
 
 
 #delete packages & cache
